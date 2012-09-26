@@ -1,0 +1,3 @@
+O Banco precisa gerar boletos para as operações de câmbio de compra de clientes PJ para operações de valor inferior a 10000.
+Estes boletos são do tipo "ABC07".
+A descrição do evento deve ser "Compra PJ Simples".

@@ -1,0 +1,3 @@
+A Corretora precisa gerar boletos para as operações de câmbio de compra e venda.
+Estes boletos são do tipo "ABC09" caso o cliente seja pessoa física ou estrangeiro e "ABC07" se for pessoa jurídica.
+A descrição do evento deve ser "<Compra/Venda> <PJ/PF>".
