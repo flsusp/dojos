@@ -8,7 +8,14 @@ public class Boleto {
     private double valor;
     private String cliente;
 
-    public String getCliente() {
+    public Boleto(TipoCliente cliente, String tipo, String descricaoEvento, double valor) {
+		this.cliente= cliente.name();
+		this.tipo = tipo;
+		this.descricaoEvento=descricaoEvento;
+		this.valor=valor;
+	}
+
+	public String getCliente() {
         return cliente;
     }
 
