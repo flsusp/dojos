@@ -1,1 +1,2 @@
-No caso anterior, caso o cliente seja estrangeiro e a operação seja superior a 10000, o boleto deve ser marcado como "ABC07".
+No caso anterior, caso o cliente seja estrangeiro e a operação seja
+superior a 10000, o boleto deve ser marcado como "ABC07".
