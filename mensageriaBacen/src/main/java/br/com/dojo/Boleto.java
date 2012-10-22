@@ -15,13 +15,6 @@ public class Boleto {
 		this.valor=valor;
 	}
 
-    public Boleto(OperacaoCambioWrapper op) {
-		this.cliente= op.getTipoCliente().name();
-		this.tipo = op.getTipo();
-		this.descricaoEvento= op.getDescricaoEvento();
-		this.valor=op.getValor();
-	}
-
 	public String getCliente() {
         return cliente;
     }

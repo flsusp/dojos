@@ -1,1 +1,3 @@
-Sempre que o tipo do boleto for ABC01, a descrição do evento deve possuir um caractere "*" no final se a empresa for "Corretora" e dois caracteres "*" se a empresa for "Banco".
+Sempre que o tipo do boleto for ABC01, a descrição do evento deve possuir um caractere "*"
+no final se a empresa for "Corretora"
+e dois caracteres "*" se a empresa for "Banco".

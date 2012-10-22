@@ -16,6 +16,10 @@ public class OperacaoCambioWrapper implements OperacaoCambio{
 		return   operacaoCambio.getTipoCliente()  == TipoCliente.PessoaFisica;
 	}
 
+	public boolean isPessoaJuridica(){
+		return   operacaoCambio.getTipoCliente() == TipoCliente.PessoaJuridica;
+	}
+
 	@Override
 	public Long getId() {
 		return operacaoCambio.getId();
@@ -70,17 +74,45 @@ public class OperacaoCambioWrapper implements OperacaoCambio{
 	private static final String COMPRA_PJ_SIMPLES = "Compra PJ simples";
 
 	public String getDescricaoEvento() {
-		if(isPessoaFisica()||isEstrangeiro())
-			return (operacaoCambio.getOperacao() == Operacao.Venda) ? VENDA_PF : COMPRA_PF;
+		if (isPessoaJuridica()) {
+			return decideDescricaoQuandoPJ();
+		} else {
+			return decideDescricaoQuandoPessoaFisicaOuEstrangeiro();
+		}
+	}
+
+	private String decideDescricaoQuandoPJ() {
+		String descricao = COMPRA_PJ;
 
 		if (operacaoCambio.getEmpresa() == Empresa.Corretora)
-			return (operacaoCambio.getOperacao() == Operacao.Venda) ? VENDA_PJ : COMPRA_PJ;
+			descricao = decideDescricaoQuandoCorretoraEPJ();
+		else if (operacaoCambio.getValor() <= 10000.0)
+			descricao = COMPRA_PJ_SIMPLES;
 
-		if (operacaoCambio.getValor()<= 10000.0)
-			return COMPRA_PJ_SIMPLES;
+		if (getTipo().equals("ABC01"))
+			descricao += "**";
 
+		return descricao;
+	}
 
-		return COMPRA_PJ;
+	private String decideDescricaoQuandoCorretoraEPJ() {
+		String descricao;
+		if (operacaoCambio.getOperacao() == Operacao.Venda) {
+			descricao = VENDA_PJ;
+		} else  {
+			descricao = COMPRA_PJ;
+		}
+		return descricao;
+	}
+
+	private String decideDescricaoQuandoPessoaFisicaOuEstrangeiro() {
+		String descricao;
+		if (operacaoCambio.getOperacao() == Operacao.Venda) {
+			descricao = VENDA_PF;
+		} else {
+			descricao =  COMPRA_PF;
+		}
+		return descricao;
 	}
 
 }

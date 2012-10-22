@@ -14,17 +14,42 @@ import br.com.dojo.TipoCliente;
 public class MensageriaBacenTest {
 
 	@Test
-	public void requisito1() {
+	public void requisito5() {
 		OperacaoCambio operacao = new OperaCambioBean(1L, Empresa.Banco,
 				Operacao.Compra, "Joao", TipoCliente.PessoaJuridica,100003.0);
 
 		Boleto resultado = new MensageriaMDB().onMessage(operacao);
 
 		Assert.assertEquals("ABC01", resultado.getTipo());
-		Assert.assertEquals("Compra PJ", resultado.getDescricaoEvento());
+		Assert.assertEquals("Compra PJ**", resultado.getDescricaoEvento());
 		Assert.assertEquals(100003.0, resultado.getValor(), 0.01);
 	}
 
+
+	//FIXME Falta implementar o requisito 5 para o cliente PF e Estrangeiro
+	// o codigo atual so esta para PJ
+	public void requisito6() {
+		OperacaoCambio operacao = new OperaCambioBean(1L, Empresa.Banco,
+				Operacao.Compra, "Joao", TipoCliente.PessoaFisica, 100003.0);
+
+		Boleto resultado = new MensageriaMDB().onMessage(operacao);
+
+		Assert.assertEquals("ABC01", resultado.getTipo());
+		Assert.assertEquals("Compra PF**", resultado.getDescricaoEvento());
+		Assert.assertEquals(100003.0, resultado.getValor(), 0.01);
+	}
+
+	@Test
+	public void requisito1Denovo() {
+		OperacaoCambio operacao = new OperaCambioBean(1L, Empresa.Corretora,
+				Operacao.Compra, "Joao", TipoCliente.PessoaJuridica,100003.0);
+
+		Boleto resultado = new MensageriaMDB().onMessage(operacao);
+
+		Assert.assertEquals("ABC07", resultado.getTipo());
+		Assert.assertEquals("Compra PJ", resultado.getDescricaoEvento());
+		Assert.assertEquals(100003.0, resultado.getValor(), 0.01);
+	}
 
 	@Test
 	public void requisito2() {
@@ -81,6 +106,6 @@ public class MensageriaBacenTest {
 		Assert.assertEquals("ABC07", resultado.getTipo());
 		Assert.assertEquals("Compra PF", resultado.getDescricaoEvento());
 		Assert.assertEquals(10005.0, resultado.getValor(), 0.01);
-
 	}
+
 }
