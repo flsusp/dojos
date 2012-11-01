@@ -1,16 +1,21 @@
 package br.com.dextra;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class XFrango extends Lanche{
 
 	public XFrango() {
-		super("XFrango");
+		super("XFrango", ingredientesXFrango());
 	}
 
-	@Override
-	public BigDecimal preco() {
-		return new BigDecimal(5.0);
-	}
+	private static List<Ingrediente> ingredientesXFrango() {
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		ingredientes.add(Ingrediente.HamburguerFrango);
+		ingredientes.add(Ingrediente.Queijo);
+		ingredientes.add(Ingrediente.Alface);
 
+		return ingredientes;
+	}
 }

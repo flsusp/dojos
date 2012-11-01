@@ -1,16 +1,24 @@
 package br.com.dextra;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class XTudo extends Lanche{
 
 	public XTudo() {
-		super("XTudo");
+		super("XTudo", ingredientesXTudo());
 	}
 
-	@Override
-	public BigDecimal preco() {
-		return new BigDecimal(4.0);
-	}
+	private static List<Ingrediente> ingredientesXTudo() {
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		ingredientes.add(Ingrediente.HamburguerCarne);
+		ingredientes.add(Ingrediente.HamburguerFrango);
+		ingredientes.add(Ingrediente.Bacon);
+		ingredientes.add(Ingrediente.Queijo);
+		ingredientes.add(Ingrediente.Ovo);
+		ingredientes.add(Ingrediente.Alface);
 
+		return ingredientes;
+	}
 }
